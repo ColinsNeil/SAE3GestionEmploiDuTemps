@@ -7,6 +7,67 @@ html {
     overflow: hidden;
 }
 
+/* ------- HEADER --------- */
+
+#header{
+    background: #207db3d3;
+    border-right: 1px solid #051367;
+}
+
+#logo {
+    background : #B4E6F0;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #051367;
+}
+ 
+/* =Structure Mobile
+-------------------------------------------------------------- */
+ 
+.wrap{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1em;
+}
+ 
+.wrap:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* =Structure Tablet
+-------------------------------------------------------------- */
+ 
+@media screen and (min-width : 900px) {
+    #header{
+        top: 0;
+        left: 0;
+        width: 275px;
+        height: 100%;
+        position: absolute;
+    }
+ 
+    body{
+        border-left: 275px solid rgba(255, 255, 255, 0);
+    }
+}
+
+/* =Structure Desktop
+-------------------------------------------------------------- */
+ 
+@media screen and (min-width : 1140px) {
+    #main{
+        max-width: 1140px;
+    }
+ 
+    #footer{
+        clear: both;
+    }
+}
+
+/* --------------------------------- */
+
 #login-button{
     cursor: pointer;
     margin-top: 1.75em;
@@ -42,7 +103,6 @@ img{
     border: 1px solid rgba(93, 139, 244, 0.5);
     background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
     box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
-    display: none;
 }
 
 .close-btn{
