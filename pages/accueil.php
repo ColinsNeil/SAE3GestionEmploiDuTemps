@@ -13,30 +13,35 @@
     <link rel="stylesheet" href="../includes/style.css">
 </head>
 <header>
-<div id="page">
+    <div id="page">
         <div id="header" class="site-header">
             <div id="logo">
                 <a href="accueil.php"><img src="../assets/images/logo-EDTMANAGER.png" alt="Logo EDT MANAGER"></img></a>
             </div>
             <div class="wrap">
                 <div id="branding" role="banner">
-                   <!--  <h2>Emploi du temps</h2>           A AFFICHER QUAND CONNECTER
-                    <p><a href="">Cette semaine</a></p>
-                    <p><a href="">Ensemble des semaines</a></p> -->
-                    <h2>Outils UPJV</h2>
-                    <p><a href="https://pedag.u-picardie.fr/moodle/upjv/">Moodle</a></p>
-                    <p><a href="https://sconotes.iut-amiens.fr/">Sconotes</a></p>
-                    <p><a href="https://webmail.etud.u-picardie.fr/">Webmail</a></p>
-                    <h2>Informations</h2>
-                  <!--  <p><a href="">Les adresses mails</a></p>  A AFFICHER QUAND CONNECTER -->
-                    <p><a href="">Info IUT</a></p>
+                    <div class="section-header">
+                        <h2>Emploi du temps</h2>           <!-- A AFFICHER QUAND CONNECTER  -->
+                        <p><a href="">Cette semaine</a></p>
+                        <p><a href="">Ensemble des semaines</a></p>
+                    </div>
+                    <div class="section-header">
+                        <h2>Outils UPJV</h2>
+                        <p><a href="https://pedag.u-picardie.fr/moodle/upjv/">Moodle</a></p>
+                        <p><a href="https://sconotes.iut-amiens.fr/">Sconotes</a></p>
+                        <p><a href="https://webmail.etud.u-picardie.fr/">Webmail</a></p>
+                    </div>
+                    <div class="section-header">
+                        <h2>Informations</h2>
+                        <p><a href="">Les adresses mails</a></p> <!-- A AFFICHER QUAND CONNECTER -->
+                        <p><a href="https://www.iut-amiens.fr/">Site IUT</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
 <body>
-    <img src="../assets/images/login-icon.png" alt="Icone pour se connecter" id="login-button"></img>
     <?php if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])){ ?>     <!-- Page utilisateur connecté -->
     <div class="container">
         <div class="content">
@@ -47,12 +52,24 @@
     <?php }else{ ?>     <!-- Page utilisateur non connecté -->
     <div class="container">
         <div class="content">
-            <h1>Bienvenu sur la plateforme <span>EDT MANAGER !</span></h1>
-            <h3>Pour avoir accès à l'ensemble de la plateforme <a href="login.php" class="btn">connectez vous</a></h3>
+            <h1>Bienvenue sur la plateforme <span>EDT MANAGER !</span></h1>
+            <section id="notification">
+
+            </section>
+            <section id="profil">
+                <a href="login.php" class="btn"><img src="../assets/images/login-icon.png" alt="Icone pour se connecter" id="login-button"></img></a>
+                <button type="button" id="btnConnect" name="SeConnecter" onClick="window.location.href='login.php'">Se connecter</button>
+            </section>
+            <section id="actualite">
+                
+            </section>
         </div>
     </div>
     <?php } ?>
 </body>
 <footer>
+    <div class="container">
+        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> - EDT MANAGER</p> 
+    </div>
 </footer>
 </html>

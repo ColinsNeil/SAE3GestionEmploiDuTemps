@@ -4,9 +4,9 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    overflow: hidden;
 }
 
+/* ------------------------ */
 /* ------- HEADER --------- */
 
 #header{
@@ -20,9 +20,47 @@ html {
     padding-bottom: 50px;
     border-bottom: 1px solid #051367;
 }
+
+.section-header {
+    padding-bottom: 22px;
+    padding-left: 5px;
+}
+
+.section-header > h2 {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 4px;
+    word-spacing: 1.5px;
+    color: #000000;
+    font-variant: small-caps;
+    margin-block: 20px;
+    cursor: default;
+}
+
+.section-header > p > a {
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #000000;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.section-header > p > a:hover {
+    transition-duration: 0.5s;
+    font-family: Verdana, sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #000000;
+    text-decoration: none;
+}
+  
+.section-header > p > a:active {
+    transition-duration: 0s;
+    color: rgb(211, 210, 210);
+}
  
-/* =Structure Mobile
--------------------------------------------------------------- */
+/*------------------------ Mobile -------------------------- */
  
 .wrap{
     max-width: 1140px;
@@ -36,15 +74,14 @@ html {
     clear: both;
 }
 
-/* =Structure Tablet
--------------------------------------------------------------- */
+/* -------------------- Tablet ---------------------- */
  
 @media screen and (min-width : 900px) {
     #header{
         top: 0;
         left: 0;
         width: 275px;
-        height: 100%;
+        height: 155%;
         position: absolute;
     }
  
@@ -53,34 +90,102 @@ html {
     }
 }
 
-/* =Structure Desktop
--------------------------------------------------------------- */
+/* -------------------- Desktop ------------------------------ */
  
 @media screen and (min-width : 1140px) {
-    #main{
-        max-width: 1140px;
-    }
- 
     #footer{
         clear: both;
     }
 }
 
+/* ---------------------------- */
+/* -------- FOOTER ------------ */
+
+footer{
+    background: gray;
+    margin-top: 5em;
+}
+
+
 /* --------------------------------- */
+/* ----------- BODY ---------------- */
+
+.content > section {
+    display: inline-flex;
+    margin-block: 5px;
+}
+
+#notification, #profil{
+    position: absolute;
+    border : inset 3px #051367;
+    border-radius: 30px;
+    background: linear-gradient(145deg,#5d8af449 40%, #DFF6FF 100%);
+    height: 42vh;
+    width: 40vw;
+}
+
+#profil{
+    margin-right: 15px;
+    right: 0;
+    display:grid;
+}
 
 #login-button{
-    cursor: pointer;
-    margin-top: 1.75em;
-    margin-right: 2.5em;
-    position:absolute;
-    top:0;
-    right:0;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 75px;
+    width: 125px;
+    height: 125px;
     border-radius: 100%;
     background: rgb(5, 19, 103);
     box-shadow: 1px 5px 20px #000;
+}
+
+#btnConnect{
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    margin-bottom: 75px;
+    min-width: 130px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid #2D31FA;
+    background: #2D31FA;
+}
+
+#btnConnect:hover{
+    background: #fff;
+    color: #2D31FA;
+}
+
+
+
+#actualite{
+    border : inset 3px #051367;
+    border-radius: 30px;
+    margin-top: 425px;
+    background: linear-gradient(145deg,#5d8af449 40%, #DFF6FF 100%);
+    height: 40vh;
+    width: 83.5vw;
+}
+
+
+.content > h1{
+    font-family: 'Open Sans Condensed', sans-serif;
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    color: #202c2d;
+    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
 }
 
 img{
@@ -135,6 +240,10 @@ h1{
     font-size: 30px;
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px #000;
+}
+
+.content > h1{
+    padding-top: 10px;
 }
   
 .btn-connect, input{
