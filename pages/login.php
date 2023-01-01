@@ -1,3 +1,32 @@
+<?php
+include('../config/config.php');
+session_start();
+
+if(isset($_POST['submit'])){
+    $identifiant = $_POST['identifiant'];
+    $pass = hash("sha256", $_POST['mdp']);
+
+    /* $checkid = $pdo->prepare("select * from utilisateur where identifiant = ?");
+    $checkid->execute([$identifiant]); 
+    $user = $checkid->fetch(); */
+
+    $checkpass = $pdo->prepare("select * from utilisateur where identifiant = '$identifiant' && mdp = ?");
+    $checkpass->execute([$pass]); 
+    $result = $checkpass->fetch(PDO::FETCH_ASSOC);
+
+    if($result){
+        $_SESSION['user_id'] = $result['identifiant'];
+        $_SESSION['nom'] = $result['nom'];
+        $_SESSION['prenom'] = $result['prenom'];
+        $_SESSION['role'] = $result['role'];
+        $_SESSION['classe'] = $result['classe'];
+        header('location:accueil.php');
+    }else{
+        $error[] = 'identifiant ou mot de passe incorrect !';
+    }
+};
+?>
+
 <!DOCTYPE html>
 <html lang="fr" and dir="ltr">
 <head>
@@ -17,9 +46,16 @@
     <span class="close-btn">
         <a href="accueil.php"><img src="../assets/images/cross.png" alt="Croix pour fermer la fenêtre de connexion"></img></a>
     </span>
-    <form action="../accueil.php" method="POST">
+    <form action="" method="POST">
+        <?php
+            if(isset($error)){
+                foreach($error as $error){
+                    echo '<span class="error-msg">'.$error.'</span>';
+                };
+            };
+        ?>
         <input type="text" name="identifiant" placeholder="Identifiant">
         <input type="password" name="mdp" placeholder="Mot de passe">
-        <input type="submit" class="btn-connect" value="Se connecter">
+        <input type="submit" name="submit" class="btn-connect" value="Se connecter">
     </form>
  </div>

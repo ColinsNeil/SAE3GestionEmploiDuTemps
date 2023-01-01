@@ -1,3 +1,8 @@
+<?php
+include('../config/config.php');
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr" and dir="ltr">
 <head>
@@ -20,11 +25,13 @@
             </div>
             <div class="wrap">
                 <div id="branding" role="banner">
-                    <div class="section-header">
-                        <h2>Emploi du temps</h2>           <!-- A AFFICHER QUAND CONNECTER  -->
-                        <p><a href="">Cette semaine</a></p>
-                        <p><a href="">Ensemble des semaines</a></p>
-                    </div>
+                    <?php if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])){ ?>
+                        <div class="section-header">
+                            <h2>Emploi du temps</h2>
+                            <p><a href="">Cette semaine</a></p>
+                            <p><a href="">Ensemble des semaines</a></p>
+                        </div>
+                    <?php } ?>
                     <div class="section-header">
                         <h2>Outils UPJV</h2>
                         <p><a href="https://pedag.u-picardie.fr/moodle/upjv/">Moodle</a></p>
@@ -33,7 +40,9 @@
                     </div>
                     <div class="section-header">
                         <h2>Informations</h2>
-                        <p><a href="">Les adresses mails</a></p> <!-- A AFFICHER QUAND CONNECTER -->
+                        <?php if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])){ ?>
+                            <p><a href="">Les adresses mails</a></p>
+                        <?php } ?>
                         <p><a href="https://www.iut-amiens.fr/">Site IUT</a></p>
                     </div>
                 </div>
@@ -42,30 +51,31 @@
     </div>
 </header>
 <body>
-    <?php if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])){ ?>     <!-- Page utilisateur connecté -->
-    <div class="container">
-        <div class="content">
-            <h1>welcome <span><?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?> </span></h1>
-            <a href="logout.php" class="btn">logout</a>
-        </div>
-    </div>
-    <?php }else{ ?>     <!-- Page utilisateur non connecté -->
     <div class="container">
         <div class="content">
             <h1>Bienvenue sur la plateforme <span>EDT MANAGER !</span></h1>
             <section id="notification">
-
+                <p>Aucune notification</p>
             </section>
             <section id="profil">
-                <a href="login.php" class="btn"><img src="../assets/images/login-icon.png" alt="Icone pour se connecter" id="login-button"></img></a>
-                <button type="button" id="btnConnect" name="SeConnecter" onClick="window.location.href='login.php'">Se connecter</button>
+                <?php if(isset($_SESSION['user_id'])){ ?>
+                    <p>Identifiant : <span><?php echo $_SESSION['user_id']?></span></p>
+                    <p>Nom : <span><?php echo $_SESSION['nom']?></span></p>
+                    <p>Prénom : <span><?php echo $_SESSION['prenom']?></span></p>
+                    <?php if(isset($_SESSION['classe'])){ ?>
+                        <p>Classe : <span><?php echo $_SESSION['classe']?></span></p>
+                    <?php } ?>
+                    <a href="logout.php" class="btn">logout</a>
+                <?php }else{ ?>
+                    <a href="login.php" class="btn"><img src="../assets/images/login-icon.png" alt="Icone pour se connecter" id="login-button"></img></a>
+                    <button type="button" id="btnConnect" name="SeConnecter" onClick="window.location.href='login.php'">Se connecter</button>
+                <?php } ?>
             </section>
             <section id="actualite">
-                
+                <p>Aucune actualité</p>
             </section>
         </div>
     </div>
-    <?php } ?>
 </body>
 <footer>
     <div class="container">
