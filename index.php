@@ -9,7 +9,7 @@
 
     // On demande à Flight d'utiliser Smarty pour le rendu des pages HTMLs
     Flight::register('view', 'Smarty', array(), function($smarty){
-        $smarty->template_dir = './templates/';
+        $smarty->template_dir = './pages/';
         $smarty->compile_dir = './templates_c/';
         $smarty->config_dir = './config/';
         $smarty->cache_dir = './cache/';
@@ -23,6 +23,8 @@
 
     // On met l'objet pdo dans flight
     Flight::set('pdo', $pdo);
+
+    session_start();
 
     Flight::start();
 
