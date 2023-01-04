@@ -20,15 +20,17 @@
                 <a href="/"><img src="../assets/images/cross.png" alt="Croix pour fermer la fenêtre de connexion"></img></a>
             </span>
             <form action="" method="POST">
-                    {if isset($error)}
-                        {foreach from=$error item=$e}
-                            <span class="error-msg">{$e}</span>
-                        {{/foreach}}
-                    {/if}
                 <input type="text" name="identifiant" placeholder="Identifiant">
                 <input type="password" name="mdp" placeholder="Mot de passe">
                 <input type="submit" name="submit" class="btn-connect" value="Se connecter">
             </form>
+        </div>
+        <div id="error">
+            {if isset($error)}
+                {foreach from=$error item=$e}
+                    <span class="error-msg">{$e}</span>
+                {{/foreach}}
+            {/if}
         </div>
     <body>
 <html>

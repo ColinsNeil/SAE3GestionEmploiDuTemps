@@ -1,3 +1,29 @@
+<?php
+/* Smarty version 4.2.1, created on 2023-01-04 11:25:39
+  from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\layout.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63b562335b5ea3_69739662',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '5825986747781e142d58907b7fc8ccf8ea8c4ae5' => 
+    array (
+      0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\layout.tpl',
+      1 => 1672831536,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63b562335b5ea3_69739662 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, false);
+?>
 <!DOCTYPE html>
 <html lang="fr" and dir="ltr">
     <head>
@@ -21,13 +47,13 @@
                 </div>
                 <div class="wrap">
                     <div id="branding" role="banner">
-                        {if isset($_SESSION['nom']) && isset($_SESSION['prenom'])}
+                        <?php if ((isset($_smarty_tpl->tpl_vars['_SESSION']->value['nom'])) && (isset($_smarty_tpl->tpl_vars['_SESSION']->value['prenom']))) {?>
                             <div class="section-header">
                                 <h2>Emploi du temps</h2>
                                 <p><a href="">Cette semaine</a></p>
                                 <p><a href="">Ensemble des semaines</a></p>
                             </div>
-                        {/if}
+                        <?php }?>
 
                         <div class="section-header">
                             <h2>Outils UPJV</h2>
@@ -38,9 +64,9 @@
 
                         <div class="section-header">
                             <h2>Informations</h2>
-                            {if isset($_SESSION['nom']) && isset($_SESSION['prenom'])}
+                            <?php if ((isset($_smarty_tpl->tpl_vars['_SESSION']->value['nom'])) && (isset($_smarty_tpl->tpl_vars['_SESSION']->value['prenom']))) {?>
                                 <p><a href="">Les adresses mails</a></p>
-                            {/if}
+                            <?php }?>
                             <p><a href="https://www.iut-amiens.fr/">Site IUT</a></p>
                         </div>
                     </div>
@@ -50,12 +76,31 @@
     </header>
 
     <body>
-        {block name=body}{/block}   
+        <?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_153352379363b562335b5778_28020635', 'body');
+?>
+   
     </body>
 
     <footer>
         <div class="container">
-            <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> - EDT MANAGER</p> 
+            <p>Copyright &copy; <?php echo '<script'; ?>
+>document.write(new Date().getFullYear());<?php echo '</script'; ?>
+> - EDT MANAGER</p> 
         </div>
     </footer>
-</html>
+</html><?php }
+/* {block 'body'} */
+class Block_153352379363b562335b5778_28020635 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'body' => 
+  array (
+    0 => 'Block_153352379363b562335b5778_28020635',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+}
+}
+/* {/block 'body'} */
+}

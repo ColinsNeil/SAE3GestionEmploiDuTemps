@@ -6,6 +6,13 @@ html {
     background-size: cover;
 }
 
+img{
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
 /* ------------------------ */
 /* ------- HEADER --------- */
 
@@ -81,11 +88,11 @@ html {
         top: 0;
         left: 0;
         width: 275px;
-        height: 155%;
+        height: 115%;
         position: absolute;
     }
  
-    body{
+    #accueil{
         border-left: 275px solid rgba(255, 255, 255, 0);
     }
 }
@@ -101,9 +108,18 @@ html {
 /* ---------------------------- */
 /* -------- FOOTER ------------ */
 
-footer{
-    background: gray;
-    margin-top: 5em;
+footer {
+    position: relative;
+    margin-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    background-color: rgb(128, 128, 128);
+    color: white;
+    text-align: center;
+} 
+
+footer > .container > p{
+    padding-top: 50px;
 }
 
 
@@ -115,19 +131,26 @@ footer{
     margin-block: 5px;
 }
 
+/* ---- Notification ---- */
 #notification, #profil{
     position: absolute;
     border : inset 3px #051367;
     border-radius: 30px;
     background: linear-gradient(145deg,#5d8af449 40%, #DFF6FF 100%);
     height: 42vh;
-    width: 40vw;
+    width: 41%;
 }
 
+/* ---- Profil ---- */
 #profil{
     margin-right: 15px;
     right: 0;
+}
+
+#profil-unconnect{
+    margin: auto;
     display:grid;
+    
 }
 
 #login-button{
@@ -143,13 +166,14 @@ footer{
 }
 
 #btnConnect{
-    width: 50%;
+    width: 100%;
     height: 50%;
     margin: auto;
     margin-bottom: 75px;
+    margin-top: 35px;
     min-width: 130px;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 50px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -166,42 +190,76 @@ footer{
     color: #2D31FA;
 }
 
+#profil-connect {
+    margin: auto;
+}
 
+#profil-connect > p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
 
+#profil-connect > p > span{
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#btnUnconnect{
+    margin: auto;
+    color: #fff;
+    padding: 5px 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid #fa2d3e;
+    background: #fa2d3e;
+}
+
+/* ---- Actualité ---- */
 #actualite{
     border : inset 3px #051367;
     border-radius: 30px;
     margin-top: 425px;
     background: linear-gradient(145deg,#5d8af449 40%, #DFF6FF 100%);
     height: 40vh;
-    width: 83.5vw;
+    width: 100%;
 }
 
+/* ---- Section vide ---- */
+.empty-section{
+    margin: auto;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 20px;
+    word-spacing: 1px;
+    color: #000000;
+    font-weight: 700;
+    font-variant: small-caps;
+    text-transform: uppercase;
+}
 
+/* ---- Titre ---- */
 .content > h1{
     font-family: 'Open Sans Condensed', sans-serif;
     position: relative;
     margin-top: 20px;
     text-align: center;
     font-size: 30px;
+    padding-top: 10px;
     color: #202c2d;
     text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
 }
 
-img{
-    display: block;
-    margin: auto;
-    width: 100%;
-    height: auto;
-}
-  
+/* --------------------------------- */
+/* ----------- LOGIN --------------- */
 #container-connection{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
     margin: auto;
+    margin-top: 15%;
     width: 425px;
     height: 225px;
     border-radius: 10px;
@@ -232,7 +290,7 @@ img{
     opacity: .5;
 }
   
-h1{
+#container-connection > h1{
     font-family: 'Open Sans Condensed', sans-serif;
     position: relative;
     margin-top: 20px;
@@ -240,10 +298,6 @@ h1{
     font-size: 30px;
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px #000;
-}
-
-.content > h1{
-    padding-top: 10px;
 }
   
 .btn-connect, input{
@@ -276,6 +330,7 @@ input:focus{
 ::-moz-placeholder { color: red;  }
 :-ms-input-placeholder {  color: #333;  }
 
+/* ---- Bouton 'Se Connecter' ---- */
 .btn-connect {
     margin-top: 15px;
     color: #fff;
@@ -299,4 +354,20 @@ input:focus{
 .btn-connect:active {
     box-shadow: 0 0 #2c0b8e;
     top: 5px;
+}
+
+/* ---- Message Erreur ---- */
+.error-msg{
+    position: relative;
+    background-color: #fce4e4;
+    border: 1px solid #fcc2c3;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    width: 14%;
+    padding: 20px 30px;
+    color: #cc0033;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
 }
