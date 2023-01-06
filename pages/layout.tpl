@@ -17,15 +17,18 @@
         <div id="page">
             <div id="header" class="site-header">
                 <div id="logo">
-                    <a href="/"><img src="./assets/images/logo-EDTMANAGER.png" alt="Logo EDT MANAGER"></img></a>
+                    <a href="./"><img src="./assets/images/logo-EDTMANAGER.png" alt="Logo EDT MANAGER"></img></a>
                 </div>
                 <div class="wrap">
                     <div id="branding" role="banner">
-                        {if isset($_SESSION['nom']) && isset($_SESSION['prenom'])}
+                        {if isset($_SESSION['user_id'])}
                             <div class="section-header">
                                 <h2>Emploi du temps</h2>
                                 <p><a href="">Cette semaine</a></p>
                                 <p><a href="">Ensemble des semaines</a></p>
+                                {if $_SESSION['role'] == 'prof' || $_SESSION['role'] == 'admin'}
+                                    <p><a href="">Saisir disponibilités</a></p>
+                                {/if}
                             </div>
                         {/if}
 
@@ -38,11 +41,21 @@
 
                         <div class="section-header">
                             <h2>Informations</h2>
-                            {if isset($_SESSION['nom']) && isset($_SESSION['prenom'])}
+                            {if isset($_SESSION['user_id'])}
                                 <p><a href="">Les adresses mails</a></p>
                             {/if}
                             <p><a href="https://www.iut-amiens.fr/">Site IUT</a></p>
                         </div>
+
+                        {if isset($_SESSION['user_id']) && $_SESSION['role'] == 'admin'}
+                            <div class="section-header">
+                                <h2>Espace administrateur</h2>
+                                <p><a href="users">Gérer les utilisateurs</a></p>
+                                <p><a href="">Gérer les classes</a></p>
+                                <p><a href="">Gérer les salles</a></p>
+                                <p><a href="">Gérer les matières</a></p>
+                            </div>
+                        {/if}
                     </div>
                 </div>
             </div>

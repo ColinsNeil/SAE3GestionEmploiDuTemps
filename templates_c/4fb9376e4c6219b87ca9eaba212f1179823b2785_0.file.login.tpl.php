@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-01-06 20:16:29
+  from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63b8819dde4b19_60926366',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4fb9376e4c6219b87ca9eaba212f1179823b2785' => 
+    array (
+      0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\login.tpl',
+      1 => 1673036064,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63b8819dde4b19_60926366 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="fr" and dir="ltr">
     <head>
         <meta charset="UTF-8">
@@ -26,11 +49,23 @@
             </form>
         </div>
         <div id="error">
-            {if isset($error)}
-                {foreach from=$error item=$e}
-                    <span class="error-msg">{$e}</span>
-                {{/foreach}}
-            {/if}
+            <?php if ((isset($_smarty_tpl->tpl_vars['error']->value))) {?>
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['error']->value, 'e');
+$_smarty_tpl->tpl_vars['e']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['e']->value) {
+$_smarty_tpl->tpl_vars['e']->do_else = false;
+?>
+                    <span class="error-msg"><?php echo $_smarty_tpl->tpl_vars['e']->value;?>
+</span>
+                <?php ob_start();
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
+
+            <?php }?>
         </div>
     <body>
-<html>
+<html><?php }
+}
