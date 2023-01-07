@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-01-07 14:26:10
+/* Smarty version 4.2.1, created on 2023-01-07 20:47:02
   from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\users.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63b9810254c765_12332108',
+  'unifunc' => 'content_63b9da46461c54_90741941',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7bac1c1018bc6bbf277af44ea240664b41c4e48b' => 
     array (
       0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\users.tpl',
-      1 => 1673101569,
+      1 => 1673124345,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63b9810254c765_12332108 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63b9da46461c54_90741941 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_191502555763b98102537556_94087772', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_205023028563b9da464530f8_88402151', 'body');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "layout.tpl");
 }
 /* {block 'body'} */
-class Block_191502555763b98102537556_94087772 extends Smarty_Internal_Block
+class Block_205023028563b9da464530f8_88402151 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_191502555763b98102537556_94087772',
+    0 => 'Block_205023028563b9da464530f8_88402151',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -52,7 +52,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 <tr class="titleTr">
                     <td id="titleTdEleve">ETUDIANTS</td>
                     <td colspan="3"></td>
-                    <td class="plusTd button" onClick='AddUpdateUsers("AddEleve")'></td>
+                    <td class="plusTd button" onClick='OpenAddorUpdate("AddEleve")'></td>
                 </tr>
                 <tr class="headingTr">
                     <td>IDENTIFIANT</td>
@@ -80,7 +80,7 @@ $_smarty_tpl->tpl_vars['row']->do_else = false;
 </td>
                     <td class="controlTd">
                         <div class="settingsIcons">
-                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='AddUpdateUsers("UpdtEleve")' /></span>
+                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='OpenAddorUpdate("UpdtEleve")' /></span>
                             <span class="settingsIcon"><a href='./users?identifiantdel=<?php echo $_smarty_tpl->tpl_vars['row']->value['identifiant'];?>
 '><img src="./assets/images/minus.png" alt="Supprimer" /></a></span>
                         </div>  
@@ -102,7 +102,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <tr class="titleTr">
                     <td id="titleTdProf">ENSEIGNANTS</td>
                     <td colspan="3"></td>
-                    <td class="plusTd button" onClick='AddUpdateUsers("AddEnseignant")'></td>
+                    <td class="plusTd button" onClick='OpenAddorUpdate("AddEnseignant")'></td>
                 </tr>
                 <tr class="headingTr">
                     <td>IDENTIFIANT</td>
@@ -126,7 +126,7 @@ $_smarty_tpl->tpl_vars['row']->do_else = false;
                     <td></td>
                     <td class="controlTd">
                         <div class="settingsIcons">
-                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='AddUpdateUsers("UpdtEnseignant")'/></span>
+                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='OpenAddorUpdate("UpdtEnseignant")'/></span>
                             <span class="settingsIcon"><a href='./users?identifiantdel=<?php echo $_smarty_tpl->tpl_vars['row']->value['identifiant'];?>
 '><img src="./assets/images/minus.png" alt="Supprimer" /></a></span>
                         </div>
@@ -147,7 +147,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div id="AddEleve">
                 <h1 style="cursor:default;">Ajouter un étudiant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("AddEleve")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddEleve")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -178,7 +178,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div id="AddEnseignant">
                 <h1 style="cursor:default;">Ajouter un enseignant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("AddEnseignant")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddEnseignant")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -192,7 +192,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div id="UpdtEleve">
                 <h1 style="cursor:default;">Modifier l'étudiant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("UpdtEleve")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("UpdtEleve")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -223,7 +223,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div id="UpdtEnseignant">
                 <h1 style="cursor:default;">Modifier l'enseignant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("UpdtEnseignant")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("UpdtEnseignant")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>

@@ -9,7 +9,7 @@
                 <tr class="titleTr">
                     <td id="titleTdEleve">ETUDIANTS</td>
                     <td colspan="3"></td>
-                    <td class="plusTd button" onClick='AddUpdateUsers("AddEleve")'></td>
+                    <td class="plusTd button" onClick='OpenAddorUpdate("AddEleve")'></td>
                 </tr>
                 <tr class="headingTr">
                     <td>IDENTIFIANT</td>
@@ -26,7 +26,7 @@
                     <td>{$row['niveau']} {$row['groupe']}-{$row['demi_groupe']}</td>
                     <td class="controlTd">
                         <div class="settingsIcons">
-                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='AddUpdateUsers("UpdtEleve")' /></span>
+                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='OpenAddorUpdate("UpdtEleve")' /></span>
                             <span class="settingsIcon"><a href='./users?identifiantdel={$row['identifiant']}'><img src="./assets/images/minus.png" alt="Supprimer" /></a></span>
                         </div>  
                     </td>
@@ -42,7 +42,7 @@
                 <tr class="titleTr">
                     <td id="titleTdProf">ENSEIGNANTS</td>
                     <td colspan="3"></td>
-                    <td class="plusTd button" onClick='AddUpdateUsers("AddEnseignant")'></td>
+                    <td class="plusTd button" onClick='OpenAddorUpdate("AddEnseignant")'></td>
                 </tr>
                 <tr class="headingTr">
                     <td>IDENTIFIANT</td>
@@ -58,7 +58,7 @@
                     <td></td>
                     <td class="controlTd">
                         <div class="settingsIcons">
-                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='AddUpdateUsers("UpdtEnseignant")'/></span>
+                            <span class="settingsIcon"><img src="./assets/images/pencil.png" alt="Modifier" onClick='OpenAddorUpdate("UpdtEnseignant")'/></span>
                             <span class="settingsIcon"><a href='./users?identifiantdel={$row['identifiant']}'><img src="./assets/images/minus.png" alt="Supprimer" /></a></span>
                         </div>
                     </td>
@@ -73,7 +73,7 @@
             <div id="AddEleve">
                 <h1 style="cursor:default;">Ajouter un étudiant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("AddEleve")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddEleve")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -93,7 +93,7 @@
             <div id="AddEnseignant">
                 <h1 style="cursor:default;">Ajouter un enseignant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("AddEnseignant")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddEnseignant")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -107,7 +107,7 @@
             <div id="UpdtEleve">
                 <h1 style="cursor:default;">Modifier l'étudiant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("UpdtEleve")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("UpdtEleve")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>
@@ -127,7 +127,7 @@
             <div id="UpdtEnseignant">
                 <h1 style="cursor:default;">Modifier l'enseignant</h1>
                 <span class="close-btn">
-                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddUpdateUsers("UpdtEnseignant")'></img></a>
+                    <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("UpdtEnseignant")'></img></a>
                 </span>
                 <form action="" method="POST">
                     <input type="text" name="identifiant" placeholder="Identifiant" style="text-transform: lowercase;" required>

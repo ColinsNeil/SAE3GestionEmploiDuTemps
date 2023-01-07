@@ -150,10 +150,48 @@
         $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'eleve' => $eleve, 'prof' => $prof, 'classe' => $classe);
         Flight::render('./pages/users.tpl', $tab);
     });
+    
+    Flight::route('GET /classes', function(){
+        $pdo = Flight::get('pdo'); 
 
-    Flight::route('/users?@params.html', function(){ 
-        $pdo = Flight::get('pdo');
+        if (isset($_GET['classedel'])) {  
+            $classeDel = $_GET['classedel']; 
+            $deleteClasse = $pdo->prepare("delete from classe where num_classe = '$classeDel'");
+            $deleteClasse->execute(); 
+        } 
 
-        Flight::render('./pages/users.tpl', $tableau);
+        $classe = getClasse();
+
+        $tab = array('_SESSION' => $_SESSION, 'classe' => $classe);
+        Flight::render('./pages/classes.tpl', $tab);
+    });
+
+    Flight::route('POST /classes', function(){
+        $pdo = Flight::get('pdo'); 
+        $error = array();
+
+        $niveau = $_POST['niveau'];
+        $niveau = strtoupper($niveau);
+        $groupe = $_POST['groupe'];
+        $groupe = strtoupper($groupe);
+        $demigroupe = $_POST['demi-groupe'];
+        $demigroupe = strtoupper($demigroupe);
+
+        $checkexist = $pdo->prepare("select * from classe where niveau = '$niveau' and groupe = '$groupe' and demi_groupe = '$demigroupe'");
+        $checkexist->execute(); 
+        $result = $checkexist->fetch(PDO::FETCH_ASSOC);
+
+        if(!($result)){
+            $inserteleve = $pdo->prepare("insert into classe (niveau,groupe,demi_groupe) values ('$niveau','$groupe','$demigroupe')");
+            $inserteleve->execute(); 
+            Flight::redirect("/classes");
+        }else{
+            $error[] = 'classe déjà existante !';
+        }
+
+        $classe = getClasse();
+
+        $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'classe' => $classe);
+        Flight::render('./pages/classes.tpl', $tab);
     });
 ?>

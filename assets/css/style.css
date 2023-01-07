@@ -105,6 +105,11 @@ img{
     footer > .container > p{
         margin-right: 250px;
     }
+
+    #AddClasse{
+        position:absolute;
+        margin: 110px;
+    }
 }
 
 /* -------------------- Desktop ------------------------------ */
@@ -322,7 +327,7 @@ footer > .container > p{
     opacity: .5;
 }
   
-#container-connection > h1, #AddEleve > h1, #AddEnseignant > h1, #UpdtEnseignant > h1, #UpdtEleve > h1{
+#container-connection > h1, #AddEleve > h1, #AddEnseignant > h1, #UpdtEnseignant > h1, #UpdtEleve > h1, #AddClasse > h1{
     font-family: 'Open Sans Condensed', sans-serif;
     position: relative;
     margin-top: 20px;
@@ -426,11 +431,24 @@ input:focus, .Selector:focus{
     overflow-y: auto;
 }
 
-.flatTable::-webkit-scrollbar {
+.flatTableClasse{  
+    width:34%;
+    margin: 30px;
+    min-width:400px;
+    border-collapse:collapse;  
+    font-weight:bold;
+    color:rgb(70, 70, 70);
+    border: solid 1px #051367;
+    display:inline-flex;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.flatTable::-webkit-scrollbar,  .flatTableClasse::-webkit-scrollbar{
     width: 14px;
 }
 
-.flatTable::-webkit-scrollbar-thumb {
+.flatTable::-webkit-scrollbar-thumb, .flatTableClasse::-webkit-scrollbar-thumb{
     background-color: #051367;
     border-radius: 40px;
     border: 5px solid #fafafa;
@@ -459,6 +477,10 @@ td{
 
 #titleTdProf{
     padding-inline: 40px;
+}
+
+#titleTdClasse{
+    padding-inline: 57.5px;
 }
 
 .plusTd{
@@ -513,19 +535,7 @@ td{
     display: none;
 }
 
-#AddEnseignant{
-    position: relative;
-    width: 425px;
-    height: 340px;
-    margin: auto;
-    border-radius: 10px;
-    border: 1px solid rgba(93, 139, 244, 0.5);
-    background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
-    box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
-    display: none;
-}
-
-#UpdtEnseignant{
+#AddEnseignant, #UpdtEnseignant{
     position: relative;
     width: 425px;
     height: 340px;
@@ -542,6 +552,16 @@ td{
     width: 425px;
     height: 370px;
     margin: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(93, 139, 244, 0.5);
+    background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
+    box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
+    display: none;
+}
+
+#AddClasse{
+    width: 425px;
+    height: 280px;
     border-radius: 10px;
     border: 1px solid rgba(93, 139, 244, 0.5);
     background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
