@@ -1,4 +1,33 @@
 <?php
+    function getEleve() {
+        $pdo = Flight::get('pdo');
+        $geteleve = $pdo->prepare("select u.identifiant,u.nom,u.prenom,c.niveau,c.groupe,c.demi_groupe from utilisateur u,classe c where u.role = 'eleve' and c.num_classe=u.classe");
+        $geteleve->execute(); 
+        $eleve = $geteleve->fetchAll();
+        return $eleve;
+    }
+
+    function getProf(){  
+        $pdo = Flight::get('pdo');   
+        $getprof = $pdo->prepare("select * from utilisateur where role = 'prof'");
+        $getprof->execute(); 
+        $prof = $getprof->fetchAll();
+        return $prof;
+    }
+
+    function getClasse(){
+        $pdo = Flight::get('pdo');
+        $getclasse = $pdo->prepare("select * from classe");
+        $getclasse->execute(); 
+        $classe = $getclasse->fetchAll();
+        return $classe;
+    }
+
+    function extractparam($parametre){  
+        preg_match('/-(.*)(.html)/',$parametre, $match);
+        return $match[1];
+    }
+
     Flight::route('/', function(){
         $tab = array('_SESSION' => $_SESSION);
 
@@ -17,8 +46,8 @@
     });
 
     Flight::route('POST /login', function(){
-        $error = array();
         $pdo = Flight::get('pdo');
+        $error = array();
 
         if(isset($_POST['submit'])){
             $identifiant = $_POST['identifiant'];
@@ -67,25 +96,64 @@
     Flight::route('GET /users', function(){
         $pdo = Flight::get('pdo');
 
-        $geteleve = $pdo->prepare("select u.identifiant,u.nom,u.prenom,c.niveau,c.groupe,c.demi_groupe from utilisateur u,classe c where u.role = 'eleve' and c.num_classe=u.classe");
-        $geteleve->execute(); 
-        $eleve = $geteleve->fetchAll();
-        
-        $getprof = $pdo->prepare("select * from utilisateur where role = 'prof'");
-        $getprof->execute(); 
-        $prof = $getprof->fetchAll();
+        if (isset($_GET['identifiantdel'])) {  
+            $identifiantDel = $_GET['identifiantdel']; 
+            $deleteUser = $pdo->prepare("delete from utilisateur where identifiant = '$identifiantDel'");
+            $deleteUser->execute(); 
+        } 
 
-        $tab = array('_SESSION' => $_SESSION,'eleve' => $eleve, 'prof' => $prof);
+        if (isset($_GET['identifiantupdt'])) {  
+            $identifiantUpdt = $_GET['identifiantupdt'];            // A finir
+        } 
+ 
+        $eleve = getEleve();
+        $prof = getProf();
+        $classe = getClasse();
+
+        $tab = array('_SESSION' => $_SESSION,'eleve' => $eleve, 'prof' => $prof, 'classe' => $classe);
         Flight::render('./pages/users.tpl', $tab);
     });
 
     Flight::route('POST /users', function(){
         $pdo = Flight::get('pdo');
+        $error = array();
 
-        $inserteleve = $pdo->prepare("insert into");
-        $inserteleve->execute(); 
+        $identifiant = $_POST['identifiant'];
+        $nom = $_POST['nom'];
+        $nom = strtoupper($nom);
+        $prenom = $_POST['prenom'];
+        $prenom = ucfirst($prenom);
+        $pass = hash("sha256", $_POST['mdp']);
+
+        $checkexist = $pdo->prepare("select * from utilisateur where identifiant = '$identifiant' or (nom = '$nom' and prenom = '$prenom')");
+        $checkexist->execute(); 
+        $result = $checkexist->fetch(PDO::FETCH_ASSOC);
+
+        if(!($result)){
+            if(isset($_POST['classe'])){
+                $classe = $_POST['classe'];
+                $inserteleve = $pdo->prepare("insert into utilisateur (identifiant,nom,prenom,mdp,role,classe) values ('$identifiant','$nom','$prenom','$pass','eleve','$classe')");
+                $inserteleve->execute(); 
+            }else{
+                $insertprof = $pdo->prepare("insert into utilisateur (identifiant,nom,prenom,mdp,role) values ('$identifiant','$nom','$prenom','$pass','prof')");
+                $insertprof->execute(); 
+            }
+            Flight::redirect("/users");
+        }else{
+            $error[] = 'utilisateur déjà existant !';
+        }
         
-        $tab = array('_SESSION' => $_SESSION);
+        $eleve = getEleve();
+        $prof = getProf();
+        $classe = getClasse();
+
+        $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'eleve' => $eleve, 'prof' => $prof, 'classe' => $classe);
         Flight::render('./pages/users.tpl', $tab);
+    });
+
+    Flight::route('/users?@params.html', function(){ 
+        $pdo = Flight::get('pdo');
+
+        Flight::render('./pages/users.tpl', $tableau);
     });
 ?>

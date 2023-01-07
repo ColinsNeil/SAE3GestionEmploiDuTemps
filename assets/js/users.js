@@ -1,15 +1,8 @@
-function AddEleve(){
-    document.getElementById("AddEleve").style.display="block";  
+function AddUpdateUsers($elementToDisplay){
+    document.getElementById($elementToDisplay).style.display="block"; 
+    document.getElementById($elementToDisplay).style.animation="backInLeft 0.5s 1"; 
 }
 
-function closeAddEleve(){
-    document.getElementById("AddEleve").style.display="none";
-}
-
-function AddEnseignant(){
-    document.getElementById("AddEnseignant").style.display="block";  
-}
-
-function closeAddEnseignant(){
-    document.getElementById("AddEnseignant").style.display="none";
+function CloseAddUpdateUsers($elementToHide){
+    document.getElementById($elementToHide).style.display="none";
 }

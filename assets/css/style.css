@@ -129,10 +129,12 @@ img{
     }
 
     #trEleve > td{
-        box-sizing:border-box;
         padding-right: 70px;
     }
 
+    #trEnseignant > td{
+        padding-right: 77px;
+    }
 }
 
 /* ---------------------------- */
@@ -320,7 +322,7 @@ footer > .container > p{
     opacity: .5;
 }
   
-#container-connection > h1, #AddEleve > h1, #AddEnseignant >h1{
+#container-connection > h1, #AddEleve > h1, #AddEnseignant > h1, #UpdtEnseignant > h1, #UpdtEleve > h1{
     font-family: 'Open Sans Condensed', sans-serif;
     position: relative;
     margin-top: 20px;
@@ -330,7 +332,7 @@ footer > .container > p{
     text-shadow: 1px 1px #000;
 }
   
-.btn-connect, input{
+.btn-connect, input, .Selector{
     font-family: 'Open Sans Condensed', sans-serif;
     text-decoration: none;
     position: relative;
@@ -348,7 +350,7 @@ footer > .container > p{
     transition: all 0.2s ease-in-out;
 }
   
-input:focus{
+input:focus, .Selector:focus{
     outline: none;
     box-shadow: 1px 1px 10px #333;
     background: rgba(3,3,3,.18);
@@ -452,21 +454,20 @@ td{
 }
 
 #titleTdEleve{
-    padding-right: 40px;
+    padding-inline: 20px;
 }
 
 #titleTdProf{
-    padding-right: 90px;
+    padding-inline: 40px;
 }
 
 .plusTd{
-    background:url(https://i.imgur.com/3hSkhay.png) center center no-repeat, rgba(0,0,0,.1);
+    background:url(../images/plus.png) center center no-repeat, rgba(0,0,0,.1);
 }
 
 .controlTd{  
   position:relative;
   width:80px;
-  background:url(https://i.imgur.com/9Q5f6cv.png) center center no-repeat;
   cursor:pointer;
 }
 
@@ -494,14 +495,11 @@ td{
 .settingsIcon{
     float:right; 
     background:rgb(55, 91, 255);
-    color:white;
     height:50px;
     width:80px;
-    box-sizing:border-box;
-    text-align:center;
-    overflow:hidden;
-    transition:width 1s;
 }
+
+/* ---- Ajout et Modification ---- */
 
 #AddEleve{
     position: relative;
@@ -525,4 +523,67 @@ td{
     background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
     box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
     display: none;
+}
+
+#UpdtEnseignant{
+    position: relative;
+    width: 425px;
+    height: 340px;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(93, 139, 244, 0.5);
+    background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
+    box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
+    display: none;
+}
+
+#UpdtEleve{
+    position: relative;
+    width: 425px;
+    height: 370px;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(93, 139, 244, 0.5);
+    background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
+    box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
+    display: none;
+}
+
+/* ---- Animations ---- */
+
+@-webkit-keyframes backInLeft {
+    0% {
+      transform: translateX(-2000px) scale(.7);
+      opacity: .7;
+    }
+    80% {
+      transform: translateX(0px) scale(.7);
+      opacity: .7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+  
+@keyframes backInLeft {
+    0% {
+      transform: translateX(-2000px) scale(.7);
+      opacity: .7;
+    }
+    80% {
+      transform: translateX(0px) scale(.7);
+      opacity: .7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+  
+.backInLeft {
+    -webkit-animation: backInLeft 1.5s;
+    animation: backInLeft 1.5s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
 }
