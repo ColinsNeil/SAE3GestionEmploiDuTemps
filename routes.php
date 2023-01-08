@@ -23,9 +23,20 @@
         return $classe;
     }
 
-    function extractparam($parametre){  
-        preg_match('/-(.*)(.html)/',$parametre, $match);
-        return $match[1];
+    function getSalle(){
+        $pdo = Flight::get('pdo');
+        $getsalle = $pdo->prepare("select * from salle");
+        $getsalle->execute(); 
+        $salle = $getsalle->fetchAll();
+        return $salle;
+    }
+
+    function getMatiere(){
+        $pdo = Flight::get('pdo');
+        $getmatiere = $pdo->prepare("select * from matiere");
+        $getmatiere->execute(); 
+        $matiere = $getmatiere->fetchAll();
+        return $matiere;
     }
 
     Flight::route('/', function(){
@@ -182,8 +193,8 @@
         $result = $checkexist->fetch(PDO::FETCH_ASSOC);
 
         if(!($result)){
-            $inserteleve = $pdo->prepare("insert into classe (niveau,groupe,demi_groupe) values ('$niveau','$groupe','$demigroupe')");
-            $inserteleve->execute(); 
+            $insertclasse = $pdo->prepare("insert into classe (niveau,groupe,demi_groupe) values ('$niveau','$groupe','$demigroupe')");
+            $insertclasse->execute(); 
             Flight::redirect("/classes");
         }else{
             $error[] = 'classe déjà existante !';
@@ -200,5 +211,84 @@
 
         $tab = array('_SESSION' => $_SESSION, 'prof' => $prof);
         Flight::render('./pages/liste-email.tpl', $tab);
+    });
+
+    Flight::route('GET /salles', function(){
+        $pdo = Flight::get('pdo'); 
+
+        if (isset($_GET['salledel'])) {  
+            $salleDel = $_GET['salledel']; 
+            $deleteSalle = $pdo->prepare("delete from salle where num_salle = '$salleDel'");
+            $deleteSalle->execute(); 
+        } 
+
+        $salle = getSalle();
+
+        $tab = array('_SESSION' => $_SESSION, 'salle' => $salle);
+        Flight::render('./pages/salles.tpl', $tab);
+    });
+
+    Flight::route('POST /salles', function(){
+        $pdo = Flight::get('pdo'); 
+        $error = array();
+
+        $nom = $_POST['nom'];
+        $capacite = $_POST['capacite'];
+
+        $checkexist = $pdo->prepare("select * from salle where nom = '$nom'");
+        $checkexist->execute(); 
+        $result = $checkexist->fetch(PDO::FETCH_ASSOC);
+
+        if(!($result)){
+            $insertsalle = $pdo->prepare("insert into salle (nom,capacite) values ('$nom','$capacite')");
+            $insertsalle->execute(); 
+            Flight::redirect("/salles");
+        }else{
+            $error[] = 'salle déjà existante !';
+        }
+
+        $salle = getSalle();
+
+        $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'salle' => $salle);
+        Flight::render('./pages/salles.tpl', $tab);
+    });
+
+    Flight::route('GET /matieres', function(){
+        $pdo = Flight::get('pdo'); 
+
+        if (isset($_GET['matieredel'])) {  
+            $matiereDel = $_GET['matieredel']; 
+            $deleteMatiere = $pdo->prepare("delete from matiere where num_matiere = '$matiereDel'");
+            $deleteMatiere->execute(); 
+        } 
+
+        $matiere = getMatiere();
+
+        $tab = array('_SESSION' => $_SESSION, 'matiere' => $matiere);
+        Flight::render('./pages/matieres.tpl', $tab);
+    });
+
+    Flight::route('POST /matieres', function(){
+        $pdo = Flight::get('pdo'); 
+        $error = array();
+
+        $nom = $_POST['nom'];
+
+        $checkexist = $pdo->prepare("select * from matiere where nom = '$nom'");
+        $checkexist->execute(); 
+        $result = $checkexist->fetch(PDO::FETCH_ASSOC);
+
+        if(!($result)){
+            $insertmatiere = $pdo->prepare("insert into matiere (nom) values ('$nom')");
+            $insertmatiere->execute(); 
+            Flight::redirect("/matieres");
+        }else{
+            $error[] = 'matière déjà existante !';
+        }
+
+        $matiere = getMatiere();
+
+        $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'matiere' => $matiere);
+        Flight::render('./pages/matieres.tpl', $tab);
     });
 ?>

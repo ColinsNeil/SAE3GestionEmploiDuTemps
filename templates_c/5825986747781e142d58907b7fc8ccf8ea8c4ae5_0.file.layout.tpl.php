@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-01-08 13:55:21
+/* Smarty version 4.2.1, created on 2023-01-08 19:07:08
   from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63bacb49a57f81_61248904',
+  'unifunc' => 'content_63bb145cab4fb2_13988359',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5825986747781e142d58907b7fc8ccf8ea8c4ae5' => 
     array (
       0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\layout.tpl',
-      1 => 1673186118,
+      1 => 1673204737,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63bacb49a57f81_61248904 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63bb145cab4fb2_13988359 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -78,8 +78,8 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
                                 <h2>Espace administrateur</h2>
                                 <p><a href="users">Gérer les utilisateurs</a></p>
                                 <p><a href="classes">Gérer les classes</a></p>
-                                <p><a href="">Gérer les salles</a></p>
-                                <p><a href="">Gérer les matières</a></p>
+                                <p><a href="salles">Gérer les salles</a></p>
+                                <p><a href="matieres">Gérer les matières</a></p>
                                 <p><a href="">Créer un EDT</a></p>
                             </div>
                         <?php }?>
@@ -91,7 +91,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 
     <body>
         <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_192792603363bacb49a57424_50553158', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_27285004563bb145cab4966_60620978', 'body');
 ?>
    
     </body>
@@ -105,12 +105,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_192792603363bacb49
     </footer>
 </html><?php }
 /* {block 'body'} */
-class Block_192792603363bacb49a57424_50553158 extends Smarty_Internal_Block
+class Block_27285004563bb145cab4966_60620978 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_192792603363bacb49a57424_50553158',
+    0 => 'Block_27285004563bb145cab4966_60620978',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

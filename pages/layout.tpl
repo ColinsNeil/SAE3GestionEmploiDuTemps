@@ -52,8 +52,8 @@
                                 <h2>Espace administrateur</h2>
                                 <p><a href="users">Gérer les utilisateurs</a></p>
                                 <p><a href="classes">Gérer les classes</a></p>
-                                <p><a href="">Gérer les salles</a></p>
-                                <p><a href="">Gérer les matières</a></p>
+                                <p><a href="salles">Gérer les salles</a></p>
+                                <p><a href="matieres">Gérer les matières</a></p>
                                 <p><a href="">Créer un EDT</a></p>
                             </div>
                         {/if}
