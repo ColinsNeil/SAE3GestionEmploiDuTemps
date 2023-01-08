@@ -42,7 +42,7 @@
                         <div class="section-header">
                             <h2>Informations</h2>
                             {if isset($_SESSION['user_id'])}
-                                <p><a href="">Les adresses mails</a></p>
+                                <p><a href="liste-email">Les adresses mails</a></p>
                             {/if}
                             <p><a href="https://www.iut-amiens.fr/">Site IUT</a></p>
                         </div>

@@ -194,4 +194,11 @@
         $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'classe' => $classe);
         Flight::render('./pages/classes.tpl', $tab);
     });
+
+    Flight::route('GET /liste-email', function(){
+        $prof = getProf();
+
+        $tab = array('_SESSION' => $_SESSION, 'prof' => $prof);
+        Flight::render('./pages/liste-email.tpl', $tab);
+    });
 ?>
