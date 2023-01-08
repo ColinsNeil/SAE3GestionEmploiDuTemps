@@ -54,7 +54,7 @@
                                 <p><a href="classes">Gérer les classes</a></p>
                                 <p><a href="salles">Gérer les salles</a></p>
                                 <p><a href="matieres">Gérer les matières</a></p>
-                                <p><a href="">Créer un EDT</a></p>
+                                <p><a href="EDTedit">Créer un EDT</a></p>
                             </div>
                         {/if}
                     </div>

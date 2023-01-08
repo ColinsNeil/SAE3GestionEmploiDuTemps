@@ -291,4 +291,10 @@
         $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'matiere' => $matiere);
         Flight::render('./pages/matieres.tpl', $tab);
     });
+
+    Flight::route('GET /EDTedit', function(){
+        $tab = array('_SESSION' => $_SESSION);
+
+        Flight::render('./pages/EDTedit.tpl', $tab);
+    });
 ?>
