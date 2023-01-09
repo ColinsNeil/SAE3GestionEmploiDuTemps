@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-01-08 19:21:39
+/* Smarty version 4.2.1, created on 2023-01-09 09:24:06
   from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63bb17c3294b85_54514028',
+  'unifunc' => 'content_63bbdd367b3705_05589913',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5825986747781e142d58907b7fc8ccf8ea8c4ae5' => 
     array (
       0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\layout.tpl',
-      1 => 1673205624,
+      1 => 1673256103,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63bb17c3294b85_54514028 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63bbdd367b3705_05589913 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -50,10 +50,10 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
                         <?php if ((isset($_smarty_tpl->tpl_vars['_SESSION']->value['user_id']))) {?>
                             <div class="section-header">
                                 <h2>Emploi du temps</h2>
-                                <p><a href="">Cette semaine</a></p>
-                                <p><a href="">Ensemble des semaines</a></p>
+                                <p><a href="cette-semaine">Cette semaine</a></p>
+                                <p><a href="cette-semaine">Ensemble des semaines</a></p>
                                 <?php if ($_smarty_tpl->tpl_vars['_SESSION']->value['role'] == 'prof' || $_smarty_tpl->tpl_vars['_SESSION']->value['role'] == 'admin') {?>
-                                    <p><a href="">Saisir disponibilités</a></p>
+                                    <p><a href="saisir-dispo">Saisir disponibilités</a></p>
                                 <?php }?>
                             </div>
                         <?php }?>
@@ -91,7 +91,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 
     <body>
         <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_253721963bb17c3294408_66630920', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_63604831563bbdd367b2f20_80531684', 'body');
 ?>
    
     </body>
@@ -105,12 +105,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_253721963bb17c3294
     </footer>
 </html><?php }
 /* {block 'body'} */
-class Block_253721963bb17c3294408_66630920 extends Smarty_Internal_Block
+class Block_63604831563bbdd367b2f20_80531684 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_253721963bb17c3294408_66630920',
+    0 => 'Block_63604831563bbdd367b2f20_80531684',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

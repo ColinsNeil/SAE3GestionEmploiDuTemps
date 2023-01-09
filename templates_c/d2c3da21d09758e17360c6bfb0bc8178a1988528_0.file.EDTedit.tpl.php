@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-01-09 08:57:59
+/* Smarty version 4.2.1, created on 2023-01-09 09:27:19
   from 'C:\Users\fouqu\OneDrive\Bureau\Travail\S3\R3.01\www\EDT MANAGER\pages\EDTedit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63bbd71710c966_51174657',
+  'unifunc' => 'content_63bbddf7e1abe9_46646259',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2c3da21d09758e17360c6bfb0bc8178a1988528' => 
     array (
       0 => 'C:\\Users\\fouqu\\OneDrive\\Bureau\\Travail\\S3\\R3.01\\www\\EDT MANAGER\\pages\\EDTedit.tpl',
-      1 => 1673254677,
+      1 => 1673256438,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63bbd71710c966_51174657 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63bbddf7e1abe9_46646259 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_206536526363bbd717101ed1_97307155', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_144914650163bbddf7e10663_58945536', 'body');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "layout.tpl");
 }
 /* {block 'body'} */
-class Block_206536526363bbd717101ed1_97307155 extends Smarty_Internal_Block
+class Block_144914650163bbddf7e10663_58945536 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_206536526363bbd717101ed1_97307155',
+    0 => 'Block_144914650163bbddf7e10663_58945536',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -54,12 +54,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <div id="containerCreateEDT">
 
                 <ul class="calendar weekly-byhour">
-                    <!--  DATA:      CATEGORY                         DAY              START  /  END     EVENT DETAILS  -->
-                    <!-- <li class="event work"      style="grid-column:   mon;   grid-row:  h08   /  h11;  ">Finish this calendar</li>
-                    <li class="event work"      style="grid-column:   wed;   grid-row:  h10   /  h19;  ">Master the grid!</li>
-                    <li class="event personal"  style="grid-column:   fri;   grid-row:  h16   /  h23;  ">After work drinks</li>
-                    <li class="event personal"  style="grid-column:   tue;   grid-row:  h18   /  h20;  ">Soccer game</li> -->
-
                     <li class="day mon">Lundi</li>
                     <li class="day tue">Mardi</li>
                     <li class="day wed">Mercredi</li>
@@ -161,7 +155,10 @@ $_smarty_tpl->tpl_vars['row']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
-                        <input type="time" id="heure-cours" name="heure-cours" min="08:00" max="20:00" value="08:00" required>
+                        <p>Heure début</p>
+                        <input type="time" id="heure-deb-cours" name="heure-deb-cours" min="08:00" max="20:00" required>
+                        <p>Heure fin</p>
+                        <input type="time" id="heure-fin-cours" name="heure-fin-cours" min="08:00" max="20:00" required>
                         <select class="Selector" name="jour" required>
                             <option value="" disabled selected hidden>Jour</option>
                             <option value="Lundi">Lundi</option>

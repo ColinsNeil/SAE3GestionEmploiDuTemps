@@ -24,10 +24,10 @@
                         {if isset($_SESSION['user_id'])}
                             <div class="section-header">
                                 <h2>Emploi du temps</h2>
-                                <p><a href="">Cette semaine</a></p>
-                                <p><a href="">Ensemble des semaines</a></p>
+                                <p><a href="cette-semaine">Cette semaine</a></p>
+                                <p><a href="cette-semaine">Ensemble des semaines</a></p>
                                 {if $_SESSION['role'] == 'prof' || $_SESSION['role'] == 'admin'}
-                                    <p><a href="">Saisir disponibilités</a></p>
+                                    <p><a href="saisir-dispo">Saisir disponibilités</a></p>
                                 {/if}
                             </div>
                         {/if}

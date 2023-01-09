@@ -15,6 +15,14 @@
         return $prof;
     }
 
+    function getProfV2(){  
+        $pdo = Flight::get('pdo');   
+        $getprof = $pdo->prepare("select * from utilisateur where role = 'prof'");
+        $getprof->execute(); 
+        $prof = $getprof->fetch(PDO::FETCH_ASSOC);
+        return $prof;
+    }
+
     function getClasse(){
         $pdo = Flight::get('pdo');
         $getclasse = $pdo->prepare("select * from classe");
@@ -37,6 +45,21 @@
         $getmatiere->execute(); 
         $matiere = $getmatiere->fetchAll();
         return $matiere;
+    }
+
+    function getDispoFromProf(){
+        $pdo = Flight::get('pdo');
+        if($_SESSION['role'] == 'admin'){
+            $prof = getProf();
+            $getdispo = $pdo->prepare("select dp.*, u.nom, u.prenom from disponibilite_prof dp, utilisateur u where u.num_util=dp.prof");
+            $getdispo->execute(); 
+        }else{
+            $prof = getProfV2();
+            $getdispo = $pdo->prepare("select * from disponibilite_prof where prof=?");
+            $getdispo->execute([$prof['num_util']]); 
+        }
+        $dispo = $getdispo->fetchAll();
+        return $dispo;
     }
 
     Flight::route('/', function(){
@@ -69,6 +92,7 @@
             $result = $checkpass->fetch(PDO::FETCH_ASSOC);
         
             if($result){
+                $_SESSION['num_util'] = $result['num_util'];
                 $_SESSION['user_id'] = $result['identifiant'];
                 $_SESSION['role'] = $result['role'];
                 if($result['nom'] != NULL || $result['prenom'] != NULL){
@@ -301,5 +325,66 @@
         
         $tab = array('_SESSION' => $_SESSION, 'classe' => $classe, 'matiere' => $matiere, 'prof' => $prof, 'salle' => $salle);
         Flight::render('./pages/EDTedit.tpl', $tab);
+    });
+
+    Flight::route('POST /EDTedit', function(){
+
+        $classe = getClasse();
+        $matiere = getMatiere();
+        $prof = getProf();
+        $salle = getSalle();
+        
+        $tab = array('_SESSION' => $_SESSION, 'classe' => $classe, 'matiere' => $matiere, 'prof' => $prof, 'salle' => $salle);
+        Flight::render('./pages/EDTedit.tpl', $tab);
+    });
+
+    Flight::route('GET /cette-semaine', function(){
+        
+        $tab = array('_SESSION' => $_SESSION);
+        Flight::render('./pages/cette-semaine.tpl', $tab);
+    });
+
+    Flight::route('GET /saisir-dispo', function(){
+        $pdo = Flight::get('pdo'); 
+        $dispo = getDispoFromProf();
+
+        if (isset($_GET['dispoprofdel']) && isset($_GET['dispodatedel']) && isset($_GET['dispoheuredebdel'])) {  
+            $dispoProfDel = $_GET['dispoprofdel'];
+            $dispoDateDel = $_GET['dispodatedel']; 
+            $dispoHeureDebDel = $_GET['dispoheuredebdel']; 
+            $deleteDispo = $pdo->prepare("delete from disponibilite_prof where prof = '$dispoProfDel' and date = '$dispoDateDel' and heure_deb = '$dispoHeureDebDel'");
+            $deleteDispo->execute(); 
+        } 
+
+        $tab = array('_SESSION' => $_SESSION, 'dispo' => $dispo);
+        Flight::render('./pages/saisir-dispo.tpl', $tab);
+    });
+
+    Flight::route('POST /saisir-dispo', function(){
+        $pdo = Flight::get('pdo'); 
+        $error = array();
+
+        $getprof = getProfV2();
+        $prof = $getprof['num_util'];
+        $date_dispo = $_POST['date-dispo'];
+        $heure_deb_cours = $_POST['heure-deb-cours'];
+        $heure_fin_cours = $_POST['heure-fin-cours'];
+
+        $checkexist = $pdo->prepare("select * from disponibilite_prof where prof = '$prof' and date = '$date_dispo' and heure_deb = '$heure_deb_cours' and heure_fin = '$heure_fin_cours'");
+        $checkexist->execute(); 
+        $result = $checkexist->fetch(PDO::FETCH_ASSOC);
+
+        if(!($result)){
+            $insertdispo = $pdo->prepare("insert into disponibilite_prof (prof,date,heure_deb,heure_fin) values ('$prof', '$date_dispo', '$heure_deb_cours', '$heure_fin_cours')");
+            $insertdispo->execute(); 
+            Flight::redirect("/saisir-dispo");
+        }else{
+            $error[] = 'disponibilité déjà existante !';
+        }
+
+        $dispo = getDispoFromProf();
+
+        $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'dispo' => $dispo);
+        Flight::render('./pages/saisir-dispo.tpl', $tab);
     });
 ?>

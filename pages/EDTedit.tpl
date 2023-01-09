@@ -9,12 +9,6 @@
             <div id="containerCreateEDT">
 
                 <ul class="calendar weekly-byhour">
-                    <!--  DATA:      CATEGORY                         DAY              START  /  END     EVENT DETAILS  -->
-                    <!-- <li class="event work"      style="grid-column:   mon;   grid-row:  h08   /  h11;  ">Finish this calendar</li>
-                    <li class="event work"      style="grid-column:   wed;   grid-row:  h10   /  h19;  ">Master the grid!</li>
-                    <li class="event personal"  style="grid-column:   fri;   grid-row:  h16   /  h23;  ">After work drinks</li>
-                    <li class="event personal"  style="grid-column:   tue;   grid-row:  h18   /  h20;  ">Soccer game</li> -->
-
                     <li class="day mon">Lundi</li>
                     <li class="day tue">Mardi</li>
                     <li class="day wed">Mercredi</li>
@@ -77,7 +71,10 @@
                                 <option value={$row['num_salle']}>{$row['nom']}</option>
                             {/foreach}
                         </select>
-                        <input type="time" id="heure-cours" name="heure-cours" min="08:00" max="20:00" value="08:00" required>
+                        <p>Heure début</p>
+                        <input type="time" id="heure-deb-cours" name="heure-deb-cours" min="08:00" max="20:00" required>
+                        <p>Heure fin</p>
+                        <input type="time" id="heure-fin-cours" name="heure-fin-cours" min="08:00" max="20:00" required>
                         <select class="Selector" name="jour" required>
                             <option value="" disabled selected hidden>Jour</option>
                             <option value="Lundi">Lundi</option>
