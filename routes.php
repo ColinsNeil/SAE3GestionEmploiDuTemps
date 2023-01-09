@@ -293,8 +293,13 @@
     });
 
     Flight::route('GET /EDTedit', function(){
-        $tab = array('_SESSION' => $_SESSION);
 
+        $classe = getClasse();
+        $matiere = getMatiere();
+        $prof = getProf();
+        $salle = getSalle();
+        
+        $tab = array('_SESSION' => $_SESSION, 'classe' => $classe, 'matiere' => $matiere, 'prof' => $prof, 'salle' => $salle);
         Flight::render('./pages/EDTedit.tpl', $tab);
     });
 ?>

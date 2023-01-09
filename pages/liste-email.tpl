@@ -1,7 +1,7 @@
 {extends file="layout.tpl"}
 
 {block name=body}
-<script src="./assets/js/copy.js"></script>
+<script src="./assets/js/tools.js"></script>
     <div class="container" id="accueil">
         <div class="content">
             <h1>Liste des emails</h1>

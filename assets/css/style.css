@@ -156,6 +156,10 @@ img{
     #titleTdEmail{
         margin-left: 170px;
     }
+
+    #AddCours{
+        margin: 15vh 60vh;
+    }
 }
 
 /* ---------------------------- */
@@ -343,7 +347,7 @@ footer > .container > p{
     opacity: .5;
 }
   
-#container-connection > h1, #AddEleve > h1, #AddEnseignant > h1, #UpdtEnseignant > h1, #UpdtEleve > h1, #AddClasse > h1, #AddSalle > h1, #AddMatiere > h1{
+#container-connection > h1, #AddEleve > h1, #AddEnseignant > h1, #UpdtEnseignant > h1, #UpdtEleve > h1, #AddClasse > h1, #AddSalle > h1, #AddMatiere > h1, #AddCours > h1{
     font-family: 'Open Sans Condensed', sans-serif;
     position: relative;
     margin-top: 20px;
@@ -615,6 +619,17 @@ td{
     display: none;
 }
 
+#AddCours{
+    position: absolute;
+    width: 425px;
+    height: 375px;
+    border-radius: 10px;
+    border: 1px solid rgba(93, 139, 244, 0.5);
+    background: linear-gradient(120deg, rgba(96, 210, 255, 0.692) 55%, rgba(74, 160, 194, 0.692) 95%);
+    box-shadow: 1px 1px 50px 7px rgb(255, 255, 255);
+    display: none;
+}
+
 /* ---- Création EDT ---- */
 
 #containerCreateEDT{
@@ -657,8 +672,8 @@ td{
 
 #btnAddCours{
     position: absolute; 
-    bottom: 35px; 
-    inset-inline: 39%;
+    bottom: 40px; 
+    inset-inline: 70%;
     width: 20%;
     height: 7%;
     color: #fff;
@@ -673,6 +688,19 @@ td{
 #btnAddCours:hover{
     background: #fff;
     color: #2dfa48;
+}
+
+#select-classe{
+    display: inline-flex;
+    position: absolute; 
+    bottom: 35px; 
+    inset-inline: 6%;
+    width: 38vh;
+    height: 9%;
+}
+
+#week-select{
+    margin-right: 5px;
 }
 
 /* ---------------- CALENDRIER ----------------- */

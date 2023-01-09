@@ -7,3 +7,8 @@ function copyKeyboard() {
     navigator.clipboard.writeText(copyText.value.toLowerCase());
     alert(copyText.value.toLowerCase() + " copiée !");
 }
+
+function downloadPDFWithBrowserPrint() {
+    window.print();
+}
+document.querySelector('#browserPrint').addEventListener('click', downloadPDFWithBrowserPrint);
