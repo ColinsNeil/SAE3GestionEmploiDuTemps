@@ -387,4 +387,37 @@
         $tab = array('_SESSION' => $_SESSION, 'error' => $error, 'dispo' => $dispo);
         Flight::render('./pages/saisir-dispo.tpl', $tab);
     });
+
+
+    Flight::route('POST /cours', function() {
+        $pdo = Flight::get('pdo');
+
+        $requeteInsertCours = $pdo -> prepare("INSERT INTO COURS VALUES(:prof,:classe, :matiere, :salle, :date, :heure_deb, :heure_fin)");
+
+        $requeteInsertCours -> execute(array(':prof'=>$_POST['prof'],':classe'=>$_POST['classe'], ':matiere'=>$_POST['matiere'], ':salle'=>$_POST['salle'], ':date'=>$_POST['date'], ':heure_deb'=>$_POST['heure-deb-cours'], ':heure_fin'=>$_POST['heure-fin-cours']));
+
+        Flight::redirect("/EDTedit");
+    });
+
+
+    Flight::route('POST /indispo-salle', function() {
+        $pdo = Flight::get('pdo');
+
+        $requeteInsertCours = $pdo -> prepare("INSERT INTO INDISPONIBILITE_SALLE VALUES(:salle, :date, :heure_deb, :date, :heure_fin, :raison)");
+
+        $requeteInsertCours -> execute(array(':salle'=>$_POST['salle'], ':date'=>$_POST['date'], ':heure_deb'=>$_POST['heure_deb'], ':heure_fin'=>$_POST['heure_fin'], ':raison'=>$_POST['raison']));
+
+        Flight::redirect("/salles");
+    });
+
+
+    Flight::route('/obtenir/edt/@nb_semaine/@id_utils', function($nb_semaine, $id_utils){
+        $pdo = Flight::get('pdo');
+
+        $tab = array('nb_semaine' => $nb_semaine, 'id_utils' => $id_utils);
+
+        Flight::render("./pages/test.tpl", $tab);
+    });
+
+
 ?>

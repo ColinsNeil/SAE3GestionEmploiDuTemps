@@ -1,8 +1,8 @@
 {extends file="layout.tpl"}
 
 {block name=body}
-<script src="./assets/js/tools.js"></script>
-<script src="./assets/js/users.js"></script>
+<script src="../assets/js/tools.js"></script>
+<script src="../assets/js/users.js"></script>
     <div class="container" id="accueil">
         <div class="content">
             <h1>Création d'Emploi du Temps</h1>
@@ -50,9 +50,9 @@
                 <div id="AddCours">
                     <h1 style="cursor:default;">Ajouter un cours</h1>
                     <span class="close-btn">
-                        <img src="./assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddCours")'></img></a>
+                        <img src="../assets/images/cross.png" alt="Croix pour fermer la fenêtre" onClick='CloseAddorUpdate("AddCours")'></img></a>
                     </span>
-                    <form action="" method="POST">
+                    <form action="/cours" method="POST">
                         <select class="Selector" name="prof" required>
                             <option value="" disabled selected hidden>Enseignant</option>
                             {foreach from=$prof item=$row}
@@ -71,6 +71,13 @@
                                 <option value={$row['num_salle']}>{$row['nom']}</option>
                             {/foreach}
                         </select>
+                        <select class="Selector" name="classe" required>
+                            <option value="" disabled selected hidden>Classe</option>
+                            {foreach from=$classe item=$row}
+                                <option value={$row['num_classe']}>{$row['niveau']}</option>
+                            {/foreach}
+                        </select>
+                        <input type="date" id="date" name="date">
                         <p>Heure début</p>
                         <input type="time" id="heure-deb-cours" name="heure-deb-cours" min="08:00" max="20:00" required>
                         <p>Heure fin</p>
