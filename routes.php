@@ -409,15 +409,4 @@
 
         Flight::redirect("/salles");
     });
-
-
-    Flight::route('/obtenir/edt/@nb_semaine/@id_utils', function($nb_semaine, $id_utils){
-        $pdo = Flight::get('pdo');
-
-        $tab = array('nb_semaine' => $nb_semaine, 'id_utils' => $id_utils);
-
-        Flight::render("./pages/test.tpl", $tab);
-    });
-
-
 ?>
