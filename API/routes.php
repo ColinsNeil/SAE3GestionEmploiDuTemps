@@ -135,6 +135,11 @@
         return password_verify($mdp, $mdpChiffre);
     }
 
+    /**
+     * Description : Fonction pour obtenir le rôle (admin, prof ou eleve) d'un utilisateur
+     * Entrée :
+     *      - identifiant : Chaîne de caractères
+     */
     function obtUtilRole($identifiant) {
         $pdo = Flight::get('pdo');
 
@@ -600,6 +605,11 @@
     * --------------------------------------------------------------------------------
     * */
 
+    /**
+     * Description : Fonction pour supprimer une classe
+     * Entrée :
+     *      - num_classe : Un entier
+     */
     function supprClasse($num_classe) {
         $pdo = Flight::get('pdo');
 
