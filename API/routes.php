@@ -1,9 +1,5 @@
 <?php
 
-    Flight::route('/', function(){
-        //header('Content-type: application/json');
-    });
-
     /**
      * --------------------------------------------------------------------------------
      *                            Actions liées aux comptes
@@ -439,7 +435,7 @@
         $resultat = array('num_classe' => $ligne[0],
                           'niveau' => $ligne[1],
                           'groupe' => $ligne[2],
-                          'demi-groupe' => $ligne[3]);
+                          'demi_groupe' => $ligne[3]);
 
         return $resultat;
     }
@@ -466,5 +462,182 @@
         }
     });
 
-    
+    /**
+    * --------------------------------------------------------------------------------
+    *                            Actions pour écrire des données
+    * --------------------------------------------------------------------------------
+    * */
+
+    /**
+     * Description : Fonction permettant d'ajouter une classse
+     * Entrée :
+     *      - niveau : Une chaîne de caractères
+     *      - groupe : Un entier
+     *      - demiGroupe : Un entier
+     */
+    function ajoutClasse($niveau, $groupe, $demiGroupe) {
+        $pdo = Flight::get('pdo');
+
+        $pdo -> exec("SET NAMES UTF8");
+
+        $requeteMySQL = $pdo -> prepare('INSERT INTO classe (niveau, groupe, demi_groupe) VALUES (:niveau, :groupe, :demiGroupe)');
+
+        $requeteMySQL -> execute(array(':niveau' => $niveau, ':groupe' => $groupe, ':demiGroupe' => $demiGroupe));
+    }
+
+    Flight::route('POST /classe', function(){
+        header('Content-type: application/json');
+
+        try {
+            if (isset($_SESSION['utilisateur'])){
+
+                if ($_SESSION['role'] == 'admin'){
+
+                    ajoutClasse($_POST['niveau'], $_POST ['groupe'], $_POST['demi_groupe']);
+                    $info['success'] = true;
+                    $info['infoClasse'] = $_POST;
+
+                } else {
+                    throw new Exception("Vous n'avez pas la permission pour faire cette opération.");
+                }
+
+            } else {
+                throw new Exception("Vous devez être connecté(e) pour effectuer cette opération.");
+            }
+        } catch (Exception $e) {
+            $info['success'] = false;
+            $info['errMsg'] = $e -> getMessage();
+        }
+
+        echo json_encode($info);
+    });
+
+    /**
+    * --------------------------------------------------------------------------------
+    *                            Actions pour mettre à jour des données
+    * --------------------------------------------------------------------------------
+    * */
+
+    /**
+     * Description : Fonction permettant de mettre à jour une classse
+     * Entrée :
+     *      - num_classe : Un entier
+     *      - attributs : Un tableau
+     */
+    function majClasse($num_classe, $attributs) {
+        $pdo = Flight::get('pdo');
+
+        $pdo -> exec("SET NAMES UTF8");
+
+        if (isset($attributs['niveau'])){
+            $requeteMySQL = $pdo -> prepare('UPDATE classe
+                                             SET niveau = :niveau
+                                             WHERE num_classe = :num_classe');
+
+            $requeteMySQL -> execute(array(':num_classe' => $num_classe, ':niveau' => $attributs['niveau']));
+        }
+
+        if (isset($attributs['groupe'])){
+            $requeteMySQL = $pdo -> prepare('UPDATE classe
+                                             SET groupe = :groupe
+                                             WHERE num_classe = :num_classe');
+
+            $requeteMySQL -> execute(array(':num_classe' => $num_classe, ':groupe' => $attributs['groupe']));
+        }
+
+        if (isset($attributs['demi_groupe'])){
+            $requeteMySQL = $pdo -> prepare('UPDATE classe
+                                             SET demi_groupe = :demi_groupe
+                                             WHERE num_classe = :num_classe');
+
+            $requeteMySQL -> execute(array(':num_classe' => $num_classe, ':demi_groupe' => $attributs['demi_groupe']));
+        }
+        
+    }
+
+    Flight::route('PUT /classe/@num_classe', function($num_classe){
+        header('Content-type: application/json');
+
+        $fluxDonneePUT = fopen("php://input", "r");
+
+        $donnee = fread($fluxDonneePUT, 1024);
+
+        parse_str($donnee, $params);
+
+        fclose($fluxDonneePUT);
+
+        try {
+            if (isset($_SESSION['utilisateur'])){
+
+                if ($_SESSION['role'] == 'admin'){
+                    
+                    if (classeExist($num_classe)) {
+                        majClasse($num_classe, $params);
+                        $info['success'] = true;
+                        $info['infoMAJClasse'] = $params;
+                    } else {
+                        throw new Exception("La classe n'existe pas dans la base de données.");
+                    }
+
+                } else {
+                    throw new Exception("Vous n'avez pas la permission de faire cette opération.");
+                }
+
+            } else {
+                throw new Exception("Vous devez être connecté(e) pour effectuer cette opération.");
+            }
+        } catch (Exception $e) {
+            $info['success'] = false;
+            $info['errMsg'] = $e -> getMessage();
+        }
+
+        echo json_encode($info);
+    });
+
+    /**
+    * --------------------------------------------------------------------------------
+    *                            Actions pour supprimer des données
+    * --------------------------------------------------------------------------------
+    * */
+
+    function supprClasse($num_classe) {
+        $pdo = Flight::get('pdo');
+
+        $pdo -> exec("SET NAMES UTF8");
+
+        $requeteMySQL = $pdo -> prepare('DELETE FROM classe
+                                         WHERE num_classe = :num_classe');
+
+        $requeteMySQL -> execute(array(':num_classe' => $num_classe));
+    }
+
+    Flight::route('DELETE /classe/@num_classe', function($num_classe){
+        header('Content-type: application/json');
+
+        try {
+            if (isset($_SESSION['utilisateur'])){
+
+                if ($_SESSION['role'] == 'admin'){
+                    
+                    if (classeExist($num_classe)) {
+                        supprClasse($num_classe);
+                        $info['success'] = true;
+                    } else {
+                        throw new Exception("La classe n'existe pas dans la base de données.");
+                    }
+
+                } else {
+                    throw new Exception("Vous n'avez pas la permission de faire cette opération.");
+                }
+
+            } else {
+                throw new Exception("Vous devez être connecté(e) pour effectuer cette opération.");
+            }
+        } catch (Exception $e) {
+            $info['success'] = false;
+            $info['errMsg'] = $e -> getMessage();
+        }
+
+        echo json_encode($info);
+    });
 ?>
