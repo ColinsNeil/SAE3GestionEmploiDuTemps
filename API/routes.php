@@ -10,7 +10,7 @@
     /* -------------------- Création de compte -------------------- */
 
     /**
-     * Description : Fonction pour savoir si un identifiant est déjà pris
+     * Description : Fonction pour savoir si un identifiant existe dans la base de données
      * Entrée : Une chaîne de caractères
      * Sortie : Un booléen
      */
@@ -164,15 +164,21 @@
             $mdp = $_POST['mdp'];
 
             if (isset($identifiant) && isset($mdp)){
-                if(identMdpCorrespond($identifiant, $mdp)){
-                    $_SESSION['utilisateur'] = $identifiant;
-                    $_SESSION['role'] = obtUtilRole($identifiant);
-    
-                    $info['success'] = true;
-                    $info['infoUtil'] = $_SESSION;                
+                if (identExist($identifiant)) {
+                    if(identMdpCorrespond($identifiant, $mdp)){
+                        $_SESSION['utilisateur'] = $identifiant;
+                        $_SESSION['role'] = obtUtilRole($identifiant);
+        
+                        $info['success'] = true;
+                        $info['infoUtil'] = $_SESSION;                
+                    } else {
+                        throw new Exception("L'identifiant et le mot de passe ne correspondent pas.");
+                    }
+
                 } else {
-                    throw new Exception("L'identifiant et le mot de passe ne correspondent pas.");
+                    throw new Exception("L'utilisateur n'existe pas.");
                 }
+                
             } else {
                 throw new Exception("L'identifiant ou le mot de passe n'a pas été saisi.");
             }
