@@ -99,7 +99,7 @@
     /**
      * Description : Fonction pour obtenir le mot de passe chiffré d'un utilisateur.
      * Entrée :
-     *      - util : chaîne de caractères
+     *      - identifiant : chaîne de caractères
      * Sortie :
      *      - chaîne de caractères
      */
@@ -120,7 +120,7 @@
     /**
      * Description : Fonction pour savoir si le mot de passe et l'identifiant d'un utilisateur correspondent
      * Entrée :
-     *      - util : chaîne de caractères
+     *      - identifiant : chaîne de caractères
      *      - mdp : chaîne de caractères
      * Sortie :
      *      - Un booléen
@@ -136,9 +136,11 @@
     }
 
     /**
-     * Description : Fonction pour obtenir le rôle (admin, prof ou eleve) d'un utilisateur
+     * Description : Fonction pour obtenir le rôle (ex: admin, prof ou eleve) d'un utilisateur
      * Entrée :
      *      - identifiant : Chaîne de caractères
+     * Sortie :
+     *      - Chaîne de caractères
      */
     function obtUtilRole($identifiant) {
         $pdo = Flight::get('pdo');
